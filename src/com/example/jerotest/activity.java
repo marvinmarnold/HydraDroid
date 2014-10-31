@@ -55,7 +55,7 @@ public class activity extends Activity {
         textView = (TextView)findViewById(R.id.text_console);
         editText = (EditText)findViewById(R.id.text_message);
  
-        new Thread(new ZeroMQServer(serverMessageHandler)).start();
+//        new Thread(new ZeroMQServer(serverMessageHandler)).start();
  
         findViewById(R.id.button_send_message).setOnClickListener(
             new View.OnClickListener() {

@@ -16,13 +16,16 @@ public class ZeroMQMessageTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         ZMQ.Context context = ZMQ.context(1);
-        ZMQ.Socket socket = context.socket(ZMQ.REQ);
-        socket.connect("tcp://192.168.43.226:5555");
+        ZMQ.Socket socket = context.socket(ZMQ.DEALER);
+        socket.connect("tcp://192.168.1.49:5555");
  
-//        HydraMsg hm = new H
+        HydraMsg hm = new HydraMsg (HydraMsg.HELLO);
+        hm.send (socket);
         
-        socket.send(params[0].getBytes(), 0);
-        String result = new String(socket.recv(0));
+        hm = HydraMsg.recv (socket);
+        String result = hm.post_id();
+        
+//        String result = new String(socket.recv(0));
  
         socket.close();
         context.term();
