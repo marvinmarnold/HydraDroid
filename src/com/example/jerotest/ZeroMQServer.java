@@ -17,7 +17,7 @@ public class ZeroMQServer implements Runnable {
 	public void run() {
 		ZMQ.Context context = ZMQ.context(1);
 		ZMQ.Socket socket = context.socket(ZMQ.REP);
-		socket.bind("tcp://127.0.0.1:5555");
+		socket.bind("tcp://*:5555");
 
 		while (!Thread.currentThread().isInterrupted()) {
 			byte[] msg =socket.recv(0);
