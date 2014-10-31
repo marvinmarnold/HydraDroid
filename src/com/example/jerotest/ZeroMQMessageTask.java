@@ -17,8 +17,10 @@ public class ZeroMQMessageTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket socket = context.socket(ZMQ.REQ);
-        socket.connect("tcp://*:5555");
+        socket.connect("tcp://192.168.43.226:5555");
  
+//        HydraMsg hm = new H
+        
         socket.send(params[0].getBytes(), 0);
         String result = new String(socket.recv(0));
  
