@@ -1,7 +1,9 @@
 package com.example.jerotest;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
- 
+import android.os.Message;
+
 import org.zeromq.ZMQ;
  
 public class ZeroMQMessageTask extends AsyncTask<String, Void, String> {
@@ -28,6 +30,12 @@ public class ZeroMQMessageTask extends AsyncTask<String, Void, String> {
  
     @Override
     protected void onPostExecute(String result) {
-        uiThreadHandler.sendMessage(Util.bundledMessage(uiThreadHandler, result));
+    	Message msg = new Message();
+    	msg.setTarget(uiThreadHandler);
+    	Bundle bundle = new Bundle();
+    	bundle.putString("AT", result);
+    	msg.setData(bundle);
+    	//Util.bundledMessage(uiThreadHandler, result)
+        uiThreadHandler.sendMessage(msg);
     }
 }

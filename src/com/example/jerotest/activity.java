@@ -36,7 +36,7 @@ public class activity extends Activity {
                     serverMessageReceived(messageBody);
                 }
             },
-            Util.MESSAGE_PAYLOAD_KEY);
+            "AT");
  
     private final MessageListenerHandler clientMessageHandler = new MessageListenerHandler(
             new IMessageListener() {
@@ -45,7 +45,7 @@ public class activity extends Activity {
                     clientMessageReceived(messageBody);
                 }
             },
-            Util.MESSAGE_PAYLOAD_KEY);
+            "AT");
             
     @Override
     public void onCreate(Bundle savedInstanceState) {
